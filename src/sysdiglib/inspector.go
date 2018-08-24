@@ -17,8 +17,8 @@ func (i ScapInspector) Free() {
 	C.ScapInspFree(i.inspector)
 }
 
-func (i ScapInspector) Next(ev *ScapEvent) C.int {
-	return C.ScapInspNext(i.inspector, &ev.evt)
+func (i ScapInspector) Next(ev *ScapEvent) int {
+	return int(C.ScapInspNext(i.inspector, &ev.evt))
 }
 
 func (i ScapInspector) Open(file string) int {
