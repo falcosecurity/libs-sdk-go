@@ -7,6 +7,7 @@ extern "C" {
 	typedef void* CScapInspector;
 	typedef void* CScapEvent;
  	typedef void* CScapThreadInfo;
+	typedef void* CScapFDInfo;
 
 	CScapInspector ScapInspNew(void);
 	void ScapInspFree(CScapInspector);
@@ -39,7 +40,9 @@ extern "C" {
 	long ScapTInfoGetGid(CScapThreadInfo ti);
 	const char* ScapTInfoGetContainerId(CScapThreadInfo ti);
 
-      
+	int ScapTInfoGetArgsLen(CScapThreadInfo ti); 
+	const char* ScapTInfoGetArgs(CScapThreadInfo ti, int i); 
+	CScapThreadInfo ScapEvGetThreadInfo(CScapEvent ev, int queryOS);     
 
 #ifdef __cplusplus
 }

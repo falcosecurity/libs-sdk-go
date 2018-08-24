@@ -61,3 +61,20 @@ const char* ScapTInfoGetContainerId(CScapThreadInfo ti) {
 	sinsp_threadinfo* threadinfo = (sinsp_threadinfo*)ti;
 	return threadinfo->m_container_id.c_str();
 }
+
+int ScapTInfoGetArgsLen(CScapThreadInfo ti) {
+	sinsp_threadinfo* threadinfo = (sinsp_threadinfo*)ti;
+	return threadinfo->m_args.size();
+}
+
+const char* ScapTInfoGetArgs(CScapThreadInfo ti, int i) {
+	sinsp_threadinfo* threadinfo = (sinsp_threadinfo*)ti;
+	if (i >= 0 && i < threadinfo->m_args.size()) {
+		return threadinfo->m_args.at(i).c_str();
+	}
+	return NULL;
+}
+
+
+
+

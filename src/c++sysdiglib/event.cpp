@@ -45,3 +45,8 @@ long ScapEvGetTID(CScapEvent ev) {
 	return evt->get_tid();
 }
 
+CScapThreadInfo ScapEvGetThreadInfo(CScapEvent ev, int queryOS) {
+	sinsp_evt* evt = (sinsp_evt*)ev;
+	return evt->get_thread_info((queryOS == 1));
+}
+
