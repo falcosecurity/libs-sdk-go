@@ -1,0 +1,33 @@
+package main
+///usr/bin/c++    -Wall -ggdb --std=c++0x -O3 -fno-strict-aliasing -DNDEBUG   CMakeFiles/sysdig.dir/fields_info.cpp.o CMakeFiles/sysdig.dir/sysdig.cpp.o  -o sysdig -rdynamic ../libsinsp/libsinsp.a ../libscap/libscap.a -lelf ../../zlib-prefix/src/zlib/libz.a ../../jq-prefix/src/jq/.libs/libjq.a ../../b64-prefix/src/b64/src/libb64.a ../../curl-prefix/src/curl/lib/.libs/libcurl.a -lrt -lanl ../../openssl-prefix/src/openssl/target/lib/libssl.a ../../openssl-prefix/src/openssl/target/lib/libcrypto.a ../../luajit-prefix/src/luajit/src/libluajit.a -ldl -lpthread
+// #cgo LDFLAGS: -rdynamic -L../../sysdig-0.23.0/build/userspace/libscap/ -lscap -L../../sysdig-0.23.0/build/userspace/libsinsp/ -lsinsp -L../c++sysdiglib/ -lsysdig -lelf -L../../sysdig-0.23.0/build/zlib-prefix/src/zlib/ -lz -L../../sysdig-0.23.0/build/jq/.libs/ -ljq -L../../sysdig-0.23.0/build/b64-prefix/src/b64/src/ -lb64 -L../../sysdig-0.23.0/build/curl-prefix/src/curl/lib/.libs/ -lcurl -lrt -lanl -L../../sysdig-0.23.0/build/openssl-prefix/src/openssl/target/lib/ -lssl -L../../sysdig-0.23.0/build/openssl-prefix/src/openssl/target/lib/ -lcrypto -L../../sysdig-0.23.0/build/luajit-prefix/src/luajit/src/ -lluajit.a -ldl -lpthread
+// #cgo CFLAGS: -I/home/terylt/sysdig/sysdig-0.23.0/userspace/libsinsp/ -I/home/terylt/sysdig/sysdig-0.23.0/userspace/libscap/ -I/home/terylt/sysdig/sysdig-0.23.0/userspace/libsinsp/third-party/jsoncpp/ -I../c++sysdiglib/
+// #include "sysdig.h"
+import "C"
+
+type ScapEvent struct {
+	evt C.CScapEvent
+}
+
+type ScapInspector struct {
+	inspector C.CScapInspector
+}
+
+func New() ScapInspector {
+	var insp  C.CScapInspector
+	insp.inspector = C.ScapInspNew()
+	return insp
+}
+func (i ScapInspector) Free() {
+	C.ScapInspFree(f.inspector)
+}
+func (i ScapInspector) Next(ev CScapEvent) int {
+	return int(C.ScapInspNext(i.inspector, ev.evt))
+}
+
+func main() {
+	var ev ScapEvent
+	inspector := New()
+	res := inspector.Next(ev)
+	inspector.Free()
+}
