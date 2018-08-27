@@ -1,0 +1,1 @@
+swig -I/home/terylt/workspace/goscap/sysdig-0.23.0/userspace/libsinsp/ -I/home/terylt/workspace/goscap/sysdig-0.23.0/userspace/libscap/ -I/home/terylt/workspace/goscap/sysdig-0.23.0/userspace/libsinsp/third-party/jsoncpp/ -c++ -go -cgo -intgosize 32 -DOUT= sysdig.i
