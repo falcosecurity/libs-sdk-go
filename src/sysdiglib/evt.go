@@ -1,4 +1,5 @@
 package sysdiglib
+//#include "scap.h"
 // #include "../c++sysdiglib/sysdig.h"
 import "C"
 

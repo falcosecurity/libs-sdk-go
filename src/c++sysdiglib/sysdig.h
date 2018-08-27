@@ -3,6 +3,7 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#include "scap.h"
 
 	typedef void* CScapInspector;
 	typedef void* CScapEvent;
@@ -24,6 +25,7 @@ extern "C" {
 	unsigned short ScapEvGetDirection(CScapEvent ev); 
 	const char* ScapEvGetName(CScapEvent ev);
 	long ScapEvGetTID(CScapEvent ev);
+	CScapThreadInfo ScapEvGetThreadInfo(CScapEvent ev, int queryOS);     
 
 	const char* ScapTInfoGetProc(CScapThreadInfo);
 	const char* ScapTInfoGetExe(CScapThreadInfo);
@@ -39,10 +41,37 @@ extern "C" {
 	long ScapTInfoGetUid(CScapThreadInfo ti); 
 	long ScapTInfoGetGid(CScapThreadInfo ti);
 	const char* ScapTInfoGetContainerId(CScapThreadInfo ti);
-
 	int ScapTInfoGetArgsLen(CScapThreadInfo ti); 
-	const char* ScapTInfoGetArgs(CScapThreadInfo ti, int i); 
-	CScapThreadInfo ScapEvGetThreadInfo(CScapEvent ev, int queryOS);     
+	const char* ScapTInfoGetArgs(CScapThreadInfo ti, int i);
+
+	char ScapFDInfoGetCharType(CScapFDInfo fd);
+	const char* ScapFDInfoGetName(CScapFDInfo fd);
+	int ScapFDInfoIsUnixSock(CScapFDInfo fd);
+	int ScapFDInfoIsIPv4Sock(CScapFDInfo fd);
+	int ScapFDInfoIsIPv6Sock(CScapFDInfo fd);
+	int ScapFDInfoIsUDPSock(CScapFDInfo fd);
+	int ScapFDInfoIsTCPSock(CScapFDInfo fd);
+	int ScapFDInfoIsPipe(CScapFDInfo fd);
+	int ScapFDInfoIsFile(CScapFDInfo fd);
+	int ScapFDInfoIsDirectory(CScapFDInfo fd);
+	unsigned short ScapFDInfoGetServPort(CScapFDInfo fd);
+	scap_l4_proto ScapFDInfoGetL4Proto(CScapFDInfo fd);
+	int ScapFDInfoIsRoleServer(CScapFDInfo fd);
+	int ScapFDInfoIsRoleClient(CScapFDInfo fd);
+	int ScapFDInfoIsRoleNone(CScapFDInfo fd);
+	int ScapFDInfoIsSocketConnected(CScapFDInfo fd);
+	int ScapFDInfoIsCloned(CScapFDInfo fd);
+	const char* ScapFDInfoGetOldName(CScapFDInfo fd);
+	unsigned int ScapFDInfoGetSIPv4(CScapFDInfo fd);
+	unsigned int ScapFDInfoGetDIPv4(CScapFDInfo fd);
+	unsigned short ScapFDInfoGetSPortv4(CScapFDInfo fd);
+	unsigned short ScapFDInfoGetDPortv4(CScapFDInfo fd);
+	unsigned char ScapFDInfoGetProtov4(CScapFDInfo fd);
+	void* ScapFDInfoGetSIPv6(CScapFDInfo fd);
+	void* ScapFDInfoGetDIPv6(CScapFDInfo fd);
+	unsigned short ScapFDInfoGetDPortv6(CScapFDInfo fd);
+	unsigned short ScapFDInfoGetSPortv6(CScapFDInfo fd);
+	unsigned char ScapFDInfoGetProtov6(CScapFDInfo fd);
 
 #ifdef __cplusplus
 }
