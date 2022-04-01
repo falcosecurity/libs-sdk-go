@@ -8,17 +8,22 @@ apis: cpp go
 
 .PHONY: cpp
 cpp:
-	docker run --rm -v $(pwd)/src:/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) make -C /src/c++
+	docker run --rm -v $(shell pwd)/src:/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) make -C /src/c++
 
 .PHONY: go
 go:
 	cpp
-	docker run --rm -v $(pwd)/src:/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) make -C /src/go
+	docker run --rm -v $(shell pwd)/src:/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) make -C /src/go
+
+.PHONY: install_libs_local
+install_libs_local:
+	mkdir -p build/include && docker run --rm -v $(shell pwd)/build:/build ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) cp -r /usr/include/falcosecurity build/include/.
 
 .PHONY: clean
 clean:
 	make -C src/c++ clean
 	make -C src/go clean
+	rm -rf build
 
 .PHONY : help
 help:

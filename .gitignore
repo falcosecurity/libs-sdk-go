@@ -47,4 +47,6 @@
 # Go workspace file
 go.work
 
+# Misc
+build/
 
