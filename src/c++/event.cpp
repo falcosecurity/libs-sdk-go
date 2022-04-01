@@ -1,6 +1,6 @@
 #include <sinsp.h>
 #define __STDC_FORMAT_MACROS
-#include "sysdig.h"
+#include "libs.h"
 
 unsigned long ScapEvGetTS(CScapEvent ev) {
 	sinsp_evt* evt = (sinsp_evt*)ev;
