@@ -49,4 +49,4 @@ go.work
 
 # Misc
 build/
-
+.vscode
