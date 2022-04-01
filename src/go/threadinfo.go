@@ -1,5 +1,6 @@
-package sysdiglib
-// #include "../c++sysdiglib/sysdig.h"
+package libs
+
+// #include "../c++/libs.h"
 import "C"
 
 type ThreadInfo struct {
@@ -32,7 +33,7 @@ func (i ThreadInfo) GetCWDAsGoString() string {
 
 func (i ThreadInfo) GetMainThread() *ThreadInfo {
 	ti := new(ThreadInfo)
-        ti.tinfo = C.ScapTInfoGetMainThread(i.tinfo)
+	ti.tinfo = C.ScapTInfoGetMainThread(i.tinfo)
 	return ti
 }
 
@@ -84,5 +85,3 @@ func (i ThreadInfo) GetArgs() []string {
 func (i ThreadInfo) GetArgsLen() int {
 	return int(C.ScapTInfoGetArgsLen(i.tinfo))
 }
-
-

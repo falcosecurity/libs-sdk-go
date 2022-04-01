@@ -1,5 +1,6 @@
-package sysdiglib
-// #include "../c++sysdiglib/sysdig.h"
+package libs
+
+// #include "../c++/libs.h"
 import "C"
 
 type FDInfo struct {
@@ -62,7 +63,7 @@ func (i FDInfo) GetServerPort() uint16 {
 	return uint16(C.ScapFDInfoGetServPort(i.fdinfo))
 }
 
-func (i FDInfo) GetL4Proto() C.scap_l4_proto {
+func (i FDInfo) GetL4Proto() uint16 {
 	return C.ScapFDInfoGetL4Proto(i.fdinfo)
 }
 

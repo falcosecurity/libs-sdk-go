@@ -1,5 +1,5 @@
-package sysdiglib
-import "C"
+package libs
+
 const SCAP_SUCCESS int = 0
 const SCAP_FAILURE int = 1
 const SCAP_TIMEOUT int = -1

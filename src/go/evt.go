@@ -1,6 +1,6 @@
-package sysdiglib
-//#include "scap.h"
-// #include "../c++sysdiglib/sysdig.h"
+package libs
+
+// #include "../c++/libs.h"
 import "C"
 
 type ScapEvent struct {
@@ -50,4 +50,3 @@ func (i ScapEvent) GetThreadInfo(queryOS bool) *ThreadInfo {
 	}
 	return &(i.ti)
 }
-
