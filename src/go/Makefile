@@ -1,8 +1,11 @@
 .PHONY: clean
 
-TARGET=libs
+TARGET=falcolibs
 
 FLAGS="-I/usr/include/falcosecurity/ -I/usr/include/falcosecurity/userspace/libsinsp -I/usr/include/falcosecurity/userspace/libscap"
+
+install: $(TARGET)
+	go install
 
 $(TARGET):
 	go build -x .

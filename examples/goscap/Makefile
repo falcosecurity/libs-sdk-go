@@ -1,6 +1,6 @@
 .PHONY: clean
 
-TARGET=go-sysdig
+TARGET=goscap
 
 
 $(TARGET):

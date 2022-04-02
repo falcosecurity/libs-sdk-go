@@ -1,4 +1,4 @@
-package libs
+package falcolibs
 
 const SCAP_SUCCESS int = 0
 const SCAP_FAILURE int = 1

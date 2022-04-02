@@ -1,10 +1,7 @@
 package main
 
-// #cgo LDFLAGS: -lsysdig -lscap -lsinsp.
-// #cgo CFLAGS: -I/home/terylt/sysdig/sysdig-0.23.0/userspace/libsinsp/ -I/home/terylt/sysdig/sysdig-0.23.0/userspace/libscap/ -I/home/terylt/sysdig/sysdig-0.23.0/userspace/libsinsp/third-party/jsoncpp/
-// #include "../c++sysdiglib/sysdig.h"
 import (
-        "sysdiglib"
+        "falcolibs"
 	"os"
 	"fmt"
 	"C"
@@ -12,18 +9,18 @@ import (
 
 func main() {
 	scapFile := os.Args[1]
-	var ev sysdiglib.ScapEvent
-	inspector := sysdiglib.New()
+	var ev falcolibs.ScapEvent
+	inspector := falcolibs.New()
 	inspector.HostAndPortResolve(0)
 	inspector.Open(scapFile)
 	for true {
 		res := inspector.Next(&ev)
-		if(res == sysdiglib.SCAP_TIMEOUT) {
+		if(res == falcolibs.SCAP_TIMEOUT) {
 			fmt.Println("SCAP TIMEOUT")
-		} else if (res == sysdiglib.SCAP_EOF){
+		} else if (res == falcolibs.SCAP_EOF){
 			fmt.Println("SCAP EOF")
 			break
-		} else if (res != sysdiglib.SCAP_SUCCESS){
+		} else if (res != falcolibs.SCAP_SUCCESS){
 			fmt.Println("SCAP FAILURE")
 			break
 		}

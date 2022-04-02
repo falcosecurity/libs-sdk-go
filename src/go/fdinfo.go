@@ -1,4 +1,4 @@
-package libs
+package falcolibs
 
 // #include "../c++/libs.h"
 import "C"
@@ -64,7 +64,7 @@ func (i FDInfo) GetServerPort() uint16 {
 }
 
 func (i FDInfo) GetL4Proto() uint16 {
-	return C.ScapFDInfoGetL4Proto(i.fdinfo)
+	return uint16(C.ScapFDInfoGetL4Proto(i.fdinfo))
 }
 
 func (i FDInfo) IsRoleServer() bool {

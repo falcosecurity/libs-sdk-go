@@ -1,4 +1,4 @@
-package libs
+package falcolibs
 
 // #include "../c++/libs.h"
 import "C"
