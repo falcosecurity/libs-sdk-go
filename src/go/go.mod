@@ -1,3 +1,3 @@
-module github.com/sysflow-telemetry/libs
+module github.com/sysflow-telemetry/libs-sdk/falcolibs
 
 go 1.17
