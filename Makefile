@@ -14,11 +14,11 @@ cpp:
 go:
 	docker run --rm -v $(shell pwd)/src:/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C /src/c++ && make -C /src/go"
 
-.PHONY: examples 
+.PHONY: examples
 examples:
 	docker run --rm -v $(shell pwd)/src:/src -v $(shell pwd)/examples:/examples ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C /src/c++ && make -C /src/go install && make -C /examples/goscap"
 
-.PHONY: install_libs_local
+.PHONY: install_libs_headers
 install_libs_local:
 	mkdir -p build/include && docker run --rm -v $(shell pwd)/build:/build ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) cp -r /usr/include/falcosecurity build/include/.
 
@@ -36,4 +36,4 @@ help:
 	@echo "... sdk"
 	@echo "... cpp"
 	@echo "... go"
-	@echo "... install_libs_local"
+	@echo "... install_libs_headers"
