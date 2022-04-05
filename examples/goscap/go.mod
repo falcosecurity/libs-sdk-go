@@ -2,6 +2,6 @@ module goscap
 
 go 1.17
 
-replace falcolibs => /src/go/
+require github.com/sysflow-telemetry/libs-sdk/falcolibs v0.0.0-00010101000000-000000000000 // indirect
 
-require falcolibs v0.0.0-00010101000000-000000000000 // indirect
+replace github.com/sysflow-telemetry/libs-sdk/falcolibs => /src/go/
