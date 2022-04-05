@@ -19,6 +19,16 @@ make sdk
 
 ## Hello "Libs"
 
-```go
+To compile the examples (currently, "goscap"), run:
 
+```bash
+make examples
+```
+
+The output binary accepts a scap trace and prints some basic event information in the standard output.
+
+To test it, run:
+
+```bash
+./goscap ../traces/httpd.scap
 ```
