@@ -4,7 +4,8 @@ include makefile.manifest.inc
 all: sdk
 
 .PHONY: sdk
-apis: cpp go
+sdk: cpp \
+	 go
 
 .PHONY: cpp
 cpp:
