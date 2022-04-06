@@ -13,11 +13,11 @@ cpp:
 
 .PHONY: go
 go:
-	docker run --rm -v $(shell pwd)/src:/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C /src/c++ && make -C /src/go"
+	docker run --rm -v $(shell pwd)/src:/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "export CGO_LDFLAGS="" && make -C /src/c++ && make -C /src/go"
 
 .PHONY: examples
 examples:
-	docker run --rm -v $(shell pwd)/src:/src -v $(shell pwd)/examples:/examples ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C /src/c++ && make -C /src/go install && make -C /examples/goscap"
+	docker run --rm -v $(shell pwd)/src:/src -v $(shell pwd)/examples:/examples ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C /src/c++ && make -C /src/go install && make -C /examples/goscap && make -C /examples/cscap && make -C /examples/cppscap"
 
 .PHONY: install_libs_headers
 install_libs_local:
@@ -27,6 +27,9 @@ install_libs_local:
 clean:
 	make -C src/c++ clean
 	make -C src/go clean
+	make -C examples/goscap clean
+	make -C examples/cscap clean
+	make -C examples/cppscap clean
 	rm -rf build
 
 .PHONY : help

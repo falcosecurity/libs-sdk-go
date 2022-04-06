@@ -23,4 +23,5 @@ package falcolibs
 // #cgo LDFLAGS: -labsl_stacktrace -labsl_symbolize
 // #cgo LDFLAGS: -labsl_debugging_internal -labsl_demangle_internal
 // #cgo LDFLAGS: -lstdc++ -lelf -lz -lrt -lanl -lssl -lcrypto -lpthread -lm -ldl -lupb -laddress_sorting -lre2
+// #cgo CFLAGS: -D_GNU_SOURCE -DHAS_CAPTURE -fno-strict-aliasing -DNDEBUG
 import "C"
