@@ -28,11 +28,11 @@ make examples
 The output binary accepts the example name (default: `goscap`) and a scap file (default: `traces/httpd.scap`), and prints some basic event information in the standard output.
 
 ```bash
-./run.sh [goscap|cppscap|cscap] <scapfile>
+./examples/run.sh [goscap|cppscap|cscap] <scapfile>
 ```
 
 For example, to test `goscap`, run:
 
 ```bash
-./run.sh goscap
+./examples/run.sh goscap
 ```
