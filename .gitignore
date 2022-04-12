@@ -51,3 +51,5 @@ go.work
 build/
 .vscode
 examples/goscap/goscap
+examples/cppscap/cppscap
+examples/cscap/cscap
