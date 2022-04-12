@@ -5,8 +5,9 @@ CXX = g++
 CFLAGS = -D_GNU_SOURCE -DHAS_CAPTURE -Wall -DNDEBUG \
 		-I$(FALCOINCLUDEPREFIX)/ \
 		-I$(FALCOINCLUDEPREFIX)/userspace/libsinsp \
-		-I$(FALCOINCLUDEPREFIX)/userspace/libscap
-LDFLAGS = -L/usr/lib/x86_64-linux-gnu/falcosecurity/ -L/src/c++/ \
+		-I$(FALCOINCLUDEPREFIX)/userspace/libscap \
+		-I/src/c++/
+LDFLAGS = -L/usr/lib/x86_64-linux-gnu/falcosecurity/ -L/src/c++/ -lfalcolibs \
 		$(FALCOLIBPREFIX)/libsinsp.a $(FALCOLIBPREFIX)/libscap.a $(FALCOLIBPREFIX)/libjq.a $(FALCOLIBPREFIX)/libonig.a \
 		$(FALCOLIBPREFIX)/libb64.a $(FALCOLIBPREFIX)/libcurl.a $(FALCOLIBPREFIX)/libtbb.a $(FALCOLIBPREFIX)/libgrpc++.a \
 		$(FALCOLIBPREFIX)/libgrpc++_alts.a $(FALCOLIBPREFIX)/libgrpc++_reflection.a  $(FALCOLIBPREFIX)/libgrpc++_error_details.a \
@@ -30,13 +31,13 @@ LDFLAGS = -L/usr/lib/x86_64-linux-gnu/falcosecurity/ -L/src/c++/ \
 		$(FALCOLIBPREFIX)/libabsl_time.a $(FALCOLIBPREFIX)/libabsl_time_zone.a $(FALCOLIBPREFIX)/libabsl_int128.a \
 		$(FALCOLIBPREFIX)/libabsl_stacktrace.a $(FALCOLIBPREFIX)/libabsl_symbolize.a $(FALCOLIBPREFIX)/libabsl_debugging_internal.a \
 		$(FALCOLIBPREFIX)/libabsl_demangle_internal.a \
-		-lfalcolibs -lelf -lstdc++ -lz -lrt -lanl -lssl -lcrypto -lpthread -lm -ldl -lupb -laddress_sorting -lre2
+		-lelf -lstdc++ -lz -lrt -lanl -lssl -lcrypto -lpthread -lm -ldl -lupb -laddress_sorting -lre2
 
 cppscap: main.o
 	$(CXX) $^ -o $@ $(LDFLAGS)
 
 main.o: main.cpp
-	$(CXX) $(CFLAGS) -o $@ -c $^ -I$(FALCOINCLUDEPREFIX)/ -I$(FALCOINCLUDEPREFIX)/userspace/libsinsp -I$(FALCOINCLUDEPREFIX)/userspace/libscap -I/src/c++/
+	$(CXX) $(CFLAGS) -o $@ -c $^
 
 .PHONY: clean
 clean:
