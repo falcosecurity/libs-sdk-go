@@ -37,7 +37,7 @@ For example, to test `goscap`, run:
 ./examples/run.sh goscap
 ```
 
-## Libs builder image
+## Libs builder and driver-loader images
 
 This SDK builds using the [libs](ghcr.io/sysflow-telemetry/libs/libs) builder image currently maintained in a fork of the libs project. Two base images are currently built and hosted in GHCR. These are intented to be used in multi-stage builds where one first builds the Libs consumer using the builder image in an initial stage, and then copies the target executable in a second stage that is derived from the [driver-loader](ghcr.io/sysflow-telemetry/libs/driver-loader) image. This should result in very small images for release.
 
