@@ -11,6 +11,11 @@ sdk: cpp \
 cpp:
 	docker run --rm -v $(shell pwd)/src:/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) make -C /src/c++
 
+.PHONY: enter
+enter:
+	docker run -it --rm -v $(shell pwd)/src:/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) bash
+
+
 .PHONY: go
 go:
 	docker run --rm -v $(shell pwd)/src:/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "export CGO_LDFLAGS="" && make -C /src/c++ && make -C /src/go"
