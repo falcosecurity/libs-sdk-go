@@ -1,6 +1,6 @@
 package falcolibs
 
-// #cgo LDFLAGS: -L${SRCDIR}/../c++/ -L/usr/lib/x86_64-linux-gnu/falcosecurity/ -lfalcolibs
+// #cgo LDFLAGS: -L${SRCDIR}/../c/ -L/usr/lib/x86_64-linux-gnu/falcosecurity/ -lfalcolibs
 // #cgo LDFLAGS: -lsinsp -lscap -ljq -lonig -lb64 -lcurl -ltbb -lgrpc++
 // #cgo LDFLAGS: -lgrpc++_alts -lgrpc++_reflection  -lgrpc++_error_details
 // #cgo LDFLAGS: -lgrpc -lgpr -lcares -lprotobuf -labsl_synchronization

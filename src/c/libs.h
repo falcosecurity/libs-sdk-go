@@ -26,6 +26,7 @@ int ScapInspNext(CScapInspector, CScapEvent *);
 void ScapInspHostAndPortResolve(CScapInspector, int);
 void ScapSetSnapLen(CScapInspector, int);
 int ScapInspOpen(CScapInspector, char *);
+int ScapInspOpenLive(CScapInspector, unsigned int);
 void ScapInspClose(CScapInspector);
 
 unsigned long ScapEvGetTS(CScapEvent);

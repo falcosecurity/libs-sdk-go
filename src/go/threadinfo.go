@@ -1,6 +1,6 @@
 package falcolibs
 
-// #include "../c++/libs.h"
+// #include "../c/libs.h"
 import "C"
 
 type ThreadInfo struct {

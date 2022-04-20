@@ -1,6 +1,6 @@
 package falcolibs
 
-// #include "../c++/libs.h"
+// #include "../c/libs.h"
 import "C"
 
 type ScapInspector struct {
@@ -24,6 +24,10 @@ func (i ScapInspector) Next(ev *ScapEvent) int {
 func (i ScapInspector) Open(file string) int {
 	fileC := C.CString(file)
 	return int(C.ScapInspOpen(i.inspector, fileC))
+}
+
+func (i ScapInspector) OpenLive(timestamp uint) int {
+	return int(C.ScapInspOpenLive(i.inspector, C.uint(timestamp)))
 }
 
 func (i ScapInspector) Close() {

@@ -38,6 +38,18 @@ int ScapInspOpen(CScapInspector ins, char *file) {
   }
   return res;
 }
+
+int ScapInspOpenLive(CScapInspector ins, unsigned int timeout_ms) {
+  sinsp *inspector = (sinsp *)ins;
+  int res = 1;
+  try {
+    inspector->open(timeout_ms);
+  } catch (sinsp_exception e) {
+    res = 0;
+  }
+  return res;
+}
+
 void ScapInspClose(CScapInspector ins) {
   sinsp *inspector = (sinsp *)ins;
   try {

@@ -2,7 +2,6 @@
 
 TARGET=goscap
 
-
 $(TARGET):
 	go build -x .
 
