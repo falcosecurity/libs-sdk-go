@@ -9,15 +9,15 @@ sdk: sdk/c \
 
 .PHONY: sdk/c
 sdk/c:
-	docker run --rm -v $(shell pwd)/src:/build/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) make -C /build/src/c
+	docker run --rm -v $(shell pwd)/pkg:/build/pkg ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) make -C /build/pkg/c
 
 .PHONY: sdk/go
 sdk/go:
-	docker run --rm -v $(shell pwd)/src:/build/src ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C /build/src/c && make -C /build/src/go"
+	docker run --rm -v $(shell pwd)/pkg:/build/pkg ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C /build/pkg/c && make -C /build/pkg/libs"
 
 .PHONY: examples/build
 examples/build:
-	docker run --rm -v $(shell pwd)/src:/build/src -v $(shell pwd)/examples:/build/examples ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C /build/src/c && make -C /build/src/go install && make -C /build/examples/goscap && make -C /build/examples/cscap && make -C /build/examples/cppscap"
+	docker run --rm -v $(shell pwd)/pkg:/build/pkg -v $(shell pwd)/examples:/build/examples ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C /build/pkg/c && make -C /build/pkg/libs install && make -C /build/examples/goscap && make -C /build/examples/cscap && make -C /build/examples/cppscap"
 
 .PHONY: examples/cscap
 examples/cscap:
@@ -42,8 +42,8 @@ install_libs_headers:
 
 .PHONY: clean
 clean:
-	make -C src/c++ clean
-	make -C src/go clean
+	make -C pkg/c clean
+	make -C pkg/libs clean
 	make -C examples/goscap clean
 	make -C examples/cscap clean
 	make -C examples/cppscap clean
