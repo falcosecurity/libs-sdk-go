@@ -19,7 +19,7 @@ ENV FALCOSECURITY_DRIVER_NAME="falco"
 ARG FALCOSECURITY_DRIVER_VERSION=latest
 ENV FALCOSECURITY_DRIVER_VERSION=${FALCOSECURITY_DRIVER_VERSION}
 
-COPY --from=builder /build/examples/cscap/cscap /usr/local/bin/goscap
+COPY --from=builder /build/examples/goscap/goscap /usr/local/bin/goscap
 COPY --from=builder /usr/src /usr/src
 
 RUN sed -i -E "s/@DRIVER_NAME@/\"${FALCOSECURITY_DRIVER_NAME}\"/" /usr/bin/falco-driver-loader && \

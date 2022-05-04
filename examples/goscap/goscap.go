@@ -10,7 +10,7 @@ import (
 
 func main() {
 	if len(os.Args) > 2 {
-		fmtPrintln("usage: ./goscap [<scap file>]")
+		fmt.Println("usage: ./goscap [<scap file>]")
 		os.Exit(1)
 	}
 
