@@ -9,15 +9,15 @@ sdk: sdk/c \
 
 .PHONY: sdk/c
 sdk/c:
-	docker run --rm -v $(shell pwd)/pkg:/build/pkg ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) make -C /build/pkg/c
+	docker run --rm -v $(shell pwd):/build -w /build ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) make -C pkg/c
 
 .PHONY: sdk/go
 sdk/go:
-	docker run --rm -v $(shell pwd)/pkg:/build/pkg ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C /build/pkg/c && make -C /build/pkg/libs"
+	docker run --rm -v $(shell pwd):/build -w /build ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C pkg/c && go build -x ./pkg/libs"
 
 .PHONY: examples/build
 examples/build:
-	docker run --rm -v $(shell pwd)/pkg:/build/pkg -v $(shell pwd)/examples:/build/examples ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C /build/pkg/c && make -C /build/pkg/libs install && make -C /build/examples/goscap && make -C /build/examples/cscap && make -C /build/examples/cppscap"
+	docker run --rm -v $(shell pwd):/build -w /build ghcr.io/sysflow-telemetry/libs/libs:$(FALCOSECURITY_LIBS_VERSION) /bin/bash -c "make -C pkg/c && go install ./pkg/libs && make -C examples/goscap && make -C examples/cscap && make -C examples/cppscap"
 
 .PHONY: examples/cscap
 examples/cscap:
@@ -29,7 +29,7 @@ examples/cppscap:
 
 .PHONY: examples/goscap
 examples/goscap:
-	docker build --build-arg FALCOSECURITY_LIBS_VERSION=$(FALCOSECURITY_LIBS_VERSION) --build-arg FALCOSECURITY_DRIVER_VERSION=$(FALCOSECURITY_DRIVER_VERSION) -f examples/goscap/Dockerfile -t goscap .
+	docker build --no-cache --build-arg FALCOSECURITY_LIBS_VERSION=$(FALCOSECURITY_LIBS_VERSION) --build-arg FALCOSECURITY_DRIVER_VERSION=$(FALCOSECURITY_DRIVER_VERSION) -f examples/goscap/Dockerfile -t goscap .
 
 .PHONY: examples
 examples: examples/cscap \
@@ -43,7 +43,6 @@ install_libs_headers:
 .PHONY: clean
 clean:
 	make -C pkg/c clean
-	make -C pkg/libs clean
 	make -C examples/goscap clean
 	make -C examples/cscap clean
 	make -C examples/cppscap clean

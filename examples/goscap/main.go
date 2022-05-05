@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// An example Libs consumer based on libs-sdk-go.
 package main
 
 import (
@@ -19,7 +20,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/sysflow-telemetry/libs-sdk/falcolibs"
+	"github.com/sysflow-telemetry/libs-sdk-go/pkg/libs"
 )
 
 func main() {
@@ -28,8 +29,8 @@ func main() {
 		os.Exit(1)
 	}
 
-	var ev falcolibs.ScapEvent
-	inspector := falcolibs.New()
+	var ev libs.ScapEvent
+	inspector := libs.New()
 	inspector.HostAndPortResolve(0)
 	if len(os.Args) == 2 {
 		scapFile := os.Args[1]
@@ -40,12 +41,12 @@ func main() {
 
 	for true {
 		res := inspector.Next(&ev)
-		if res == falcolibs.SCAP_TIMEOUT {
+		if res == libs.SCAP_TIMEOUT {
 			// perform timeout checks
-		} else if res == falcolibs.SCAP_EOF {
+		} else if res == libs.SCAP_EOF {
 			fmt.Println("SCAP EOF")
 			break
-		} else if res != falcolibs.SCAP_SUCCESS {
+		} else if res != libs.SCAP_SUCCESS {
 			fmt.Println("SCAP FAILURE")
 			break
 		} else {

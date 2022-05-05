@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package falcolibs provides a Go wrapper for the Libs public APIs.
-package falcolibs
+// Package libs provides a Go wrapper for the Libs public APIs.
+package libs
 
 // #cgo LDFLAGS: -L${SRCDIR}/../c/ -L/usr/lib/x86_64-linux-gnu/falcosecurity/ -lfalcolibs
 // #cgo LDFLAGS: -lsinsp -lscap -ljq -lonig -lb64 -lcurl -ltbb -lgrpc++

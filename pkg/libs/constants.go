@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Package falcolibs provides a Go wrapper for the Libs public APIs.
-package falcolibs
+// Package libs provides a Go wrapper for the Libs public APIs.
+package libs
 
 const SCAP_SUCCESS int = 0
 const SCAP_FAILURE int = 1
