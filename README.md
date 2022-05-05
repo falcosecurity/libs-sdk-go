@@ -1,8 +1,14 @@
 # Libs SDK (experimental)
 
-A simplified API (a.k.a. facade) for [Falco Libs](https://github.com/falcosecurity/libs).
+A Go SDK for [Falco Libs](https://github.com/falcosecurity/libs).
 
 This is an _experimental_ project. Comments and feedback are welcome!
+
+## Usage
+
+```bash
+go get github.com/sysflow-telemetry/libs-sdk-go
+```
 
 ## Build
 
@@ -11,7 +17,7 @@ Pre-requisites:
 * docker
 * make
 
-To build the SDK, which includes C++ and Go wrappers for Libs, run:
+To build the SDK, which includes C and Go wrappers for Libs, run:
 
 ```bash
 make sdk
@@ -54,7 +60,7 @@ The libs builder image defines two built-in environment variables that can be us
 
 ## Creating Libs consumer images
 
-Using this SDK, you can easily create Docker images for your Libs consumer. Example dockerfiles are providede in the `examples` directory. 
+Using this SDK, you can easily create Docker images for your Libs consumer. Example dockerfiles are providede in the `examples` directory.
 
 To build the docker images for the examples, run:
 
@@ -65,6 +71,6 @@ make examples
 To perform a live capture with any of the example consumers, run:
 
 ```bash
-./examples/<csacp|cppscap|goscap>/run.sh
+./examples/<goscap|cppscap|cscap>/run.sh
 ```
 
