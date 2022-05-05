@@ -1,13 +1,49 @@
 # Libs SDK (experimental)
 
-A Go SDK for [Falco Libs](https://github.com/falcosecurity/libs).
+A simplified API (a.k.a. facade) for [Falco Libs](https://github.com/falcosecurity/libs) in Golang.
 
 This is an _experimental_ project. Comments and feedback are welcome!
 
 ## Usage
 
+To import the Libs SDK package:
+
 ```bash
 go get github.com/sysflow-telemetry/libs-sdk-go
+```
+
+Below is a minimal example. Check [examples/goscap](examples/goscap) for a complete example.
+
+```go
+import (
+	"fmt"
+	"os"
+
+	"github.com/sysflow-telemetry/libs-sdk-go/pkg/libs"
+)
+
+func main() {
+	var ev libs.ScapEvent
+    inspector := libs.New()
+	inspector.HostAndPortResolve(0)
+    inspector.OpenLive(30)
+	for true {
+		res := inspector.Next(&ev)
+		if res == libs.SCAP_TIMEOUT {
+			// perform timeout checks
+		} else if res == libs.SCAP_EOF {
+			fmt.Println("SCAP EOF")
+			break
+		} else if res != libs.SCAP_SUCCESS {
+			fmt.Println("SCAP FAILURE")
+			break
+		} else {
+			fmt.Printf("%d %d %s\n", ev.GetRecordNum(), ev.GetTS(), ev.GetNameAsGoString())
+		}
+	}
+	inspector.Close()
+	inspector.Free()
+}
 ```
 
 ## Build
