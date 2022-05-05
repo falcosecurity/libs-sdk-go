@@ -16,7 +16,6 @@
 package main
 
 import (
-	"C"
 	"fmt"
 	"os"
 
