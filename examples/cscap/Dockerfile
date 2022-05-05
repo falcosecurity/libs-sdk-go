@@ -4,9 +4,9 @@ ARG FALCOSECURITY_DRIVER_VERSION=latest
 ### builder: based on libs base image
 FROM ghcr.io/sysflow-telemetry/libs/libs:${FALCOSECURITY_LIBS_VERSION} as builder
 
-COPY src /build/src
+COPY pkg /build/pkg
 COPY examples /build/examples
-RUN make -C /build/src/c && make -C /build/examples/cscap
+RUN make -C /build/pkg/c && make -C /build/examples/cscap
 
 ### runtime: based on libs runtime base image
 FROM ghcr.io/sysflow-telemetry/libs/runtime:${FALCOSECURITY_DRIVER_VERSION} as runtime
