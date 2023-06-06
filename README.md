@@ -1,4 +1,5 @@
-# Libs SDK (experimental)
+# Libs SDK
+[![Falco Ecosystem Repository](https://github.com/falcosecurity/evolution/blob/main/repos/badges/falco-ecosystem-blue.svg)](https://github.com/falcosecurity/evolution/blob/main/REPOSITORIES.md#ecosystem-scope) [![Sandbox](https://img.shields.io/badge/status-sandbox-red?style=for-the-badge)](https://github.com/falcosecurity/evolution/blob/main/REPOSITORIES.md#sandbox)
 
 A simplified API (a.k.a. facade) for [Falco Libs](https://github.com/falcosecurity/libs) in Golang.
 
